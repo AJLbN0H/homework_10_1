@@ -1,4 +1,4 @@
-user_card_number = input()
+user_card_number = 0
 from typing import Union
 
 
@@ -13,7 +13,7 @@ def get_mask_card_number(card_number: Union[int, str]) -> str:
 
 print(get_mask_card_number(user_card_number))
 
-user_account_number = input()
+user_account_number = 0
 
 
 def get_mask_account(account_number: Union[int, str]) -> str:

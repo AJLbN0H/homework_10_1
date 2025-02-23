@@ -1,4 +1,4 @@
-from src.masks import get_mask_card_number
+from src.masks import get_mask_card_number, get_mask_account
 
 
 def test_one_get_mask_card_number(one_card_number):
@@ -14,3 +14,7 @@ def test_invalid_card_number_length(invalid_card_number_length):
 def test_get_masked_without_card_number(no_card_number):
     assert get_mask_card_number("") == no_card_number
     assert get_mask_card_number(None) == no_card_number
+
+
+def test_get_mask_account(account_number):
+    assert get_mask_account(73654108430135874305) == account_number

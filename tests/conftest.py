@@ -14,4 +14,9 @@ def invalid_card_number_length():
 
 @pytest.fixture
 def no_card_number():
-    return "Вы не ввели номер карты"
+    return 'Вы не ввели номер карты'
+
+
+@pytest.fixture
+def account_number():
+    return '**4305'

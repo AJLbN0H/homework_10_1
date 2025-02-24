@@ -23,12 +23,8 @@ def account_number():
     return '**4305'
 
 @pytest.fixture
-def mix_account_number():
-    return '**4305'
-
-@pytest.fixture
 def invalid_account_number_length():
-    return 'Неверно указан номер счета'
+    return 'Номер счета должен содержать 20 цифр'
 
 @pytest.fixture
 def smaller_account_number():
@@ -43,6 +39,10 @@ def no_account_number():
 @pytest.fixture
 def name_and_number_card():
     return 'Visa Platinum 7000 79** **** 6361'
+
+@pytest.fixture
+def name_and_number_account():
+    return 'Счет **4305'
 
 @pytest.fixture
 def name_and_number_account():

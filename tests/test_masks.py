@@ -19,15 +19,12 @@ def test_get_masked_without_card_number(no_card_number):
 def test_get_mask_account(account_number):
     assert get_mask_account('73654108430135874305') == account_number
 
-def test_get_mask_mix_account(mix_account_number):
-    assert get_mask_account('7365 4108_4301-3587*4305') == mix_account_number
-    assert get_mask_account('7365    -3587*4305') == mix_account_number
+def test_get_mask_mix_account(account_number):
+    assert get_mask_account('7365 4108_4301-3587*4305') == account_number
 
-def test_get_smaller_mask_account(smaller_account_number):
-    assert get_mask_account('646864736788947') == smaller_account_number
-
-def test_get_mask_invalid_account_length(invalid_account_number_length):
-    assert get_mask_account('88947') == invalid_account_number_length
+def test_get_smaller_mask_account(invalid_account_number_length):
+    assert get_mask_account('7365410843013587430') == invalid_account_number_length
+    assert get_mask_account('736541084301358743055') == invalid_account_number_length
 
 def test_get_mask_no_account(no_account_number):
     assert get_mask_account('') == no_account_number

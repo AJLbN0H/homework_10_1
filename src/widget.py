@@ -1,6 +1,7 @@
-user_card_number_or_account_number = None
 from typing import Union
+from src.masks import get_mask_card_number, get_mask_account
 
+user_card_number_or_account_number = 'Счет 64686473678894779589'
 #user_card_number_or_account_number = str(input())
 
 
@@ -12,13 +13,21 @@ def mask_account_card(card_number_or_account_number: Union[str]) -> str:
         split_card_number_or_account_number = card_number_or_account_number.split()
         number = split_card_number_or_account_number[-1]
 
-        if "Счет" in card_number_or_account_number:
-            masked_number = f"**{number[-4::]}"
-        else:
-            masked_number = f"{number[0:4]} {number[4:6]}** **** {number[-4::]}"
+        if "с" in card_number_or_account_number.lower() or len(number) == 20:
+            masked_number = get_mask_account(number) #f"**{number[-4::]}"
+            if masked_number == 'Номер счета должен содержать 20 цифр':
+                return masked_number
+            else:
+                split_card_number_or_account_number[-1] = masked_number
+                return " ".join(split_card_number_or_account_number)
 
-    split_card_number_or_account_number[-1] = masked_number
-    return " ".join(split_card_number_or_account_number)
+        else:
+            masked_number = get_mask_card_number(number) #f"{number[0:4]} {number[4:6]}** **** {number[-4::]}"
+            if masked_number == 'Номер карты должен содержать 16 цифр':
+                return masked_number
+            else:
+                split_card_number_or_account_number[-1] = masked_number
+                return " ".join(split_card_number_or_account_number)
 
 
 print(mask_account_card(user_card_number_or_account_number))

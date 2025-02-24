@@ -1,5 +1,4 @@
 from src.masks import get_mask_card_number, get_mask_account
-from tests.conftest import two_mix_card_number
 
 
 def test_one_get_mask_card_number(one_card_number):

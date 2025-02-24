@@ -17,6 +17,7 @@ def no_card_number():
     return 'Вы не ввели номер карты'
 
 
+
 @pytest.fixture
 def account_number():
     return '**4305'
@@ -36,3 +37,13 @@ def smaller_account_number():
 @pytest.fixture
 def no_account_number():
     return 'Вы не ввели номер счета'
+
+
+
+@pytest.fixture
+def name_and_number_card():
+    return 'Visa Platinum 7000 79** **** 6361'
+
+@pytest.fixture
+def name_and_number_account():
+    return 'Счет **4305'

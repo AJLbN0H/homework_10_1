@@ -1,7 +1,7 @@
 from typing import Union
 from src.masks import get_mask_card_number, get_mask_account
 
-user_card_number_or_account_number = 'Счет 64686473678894779589'
+user_card_number_or_account_number = None
 #user_card_number_or_account_number = str(input())
 
 
@@ -32,14 +32,18 @@ def mask_account_card(card_number_or_account_number: Union[str]) -> str:
 
 print(mask_account_card(user_card_number_or_account_number))
 
-#user_date = None
+
+
+user_date = None
 #user_date = str(input())
 
 
-#def get_date(date: Union[str]) -> str:
-    #"""Возврощает строку с датой"""
+def get_date(date: Union[str]) -> str:
+    """Возврощает строку с датой"""
+    if date is None or date == '':
+        return 'Введите дату'
+    else:
+        return f"{date[8:10]}.{date[5:7]}.{date[0:4]}"
 
-    #return f"{date[8:10]}.{date[5:7]}.{date[0:4]}"
 
-
-#print(get_date(user_date))
+print(get_date(user_date))

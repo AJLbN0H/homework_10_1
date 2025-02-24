@@ -1,4 +1,4 @@
-from src.widget import mask_account_card
+from src.widget import mask_account_card, get_date
 import pytest
 
 def test_mask_number_card(name_and_number_card):
@@ -33,3 +33,7 @@ def test_card_number_or_account_number(unmasked_card_or_account, masked_card_or_
 ])
 def test_invalid_card_number_or_account_number(unmasked_card_or_account, invalid_masked_card_or_account):
     assert mask_account_card(unmasked_card_or_account) == invalid_masked_card_or_account
+
+
+def test_get_date(date):
+    assert get_date('2024-03-11T02:26:18.671407') == date

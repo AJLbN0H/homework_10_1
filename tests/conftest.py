@@ -44,6 +44,8 @@ def name_and_number_card():
 def name_and_number_account():
     return 'Счет **4305'
 
+
+
 @pytest.fixture
-def name_and_number_account():
-    return 'Счет **4305'
+def date():
+    return '11.03.2024'

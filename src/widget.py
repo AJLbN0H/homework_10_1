@@ -41,9 +41,10 @@ user_date = None
 def get_date(date: Union[str]) -> str:
     """Возврощает строку с датой"""
     if date is None or date == '':
-        return 'Введите дату'
+        return 'Вы не ввели дату'
     else:
-        return f"{date[8:10]}.{date[5:7]}.{date[0:4]}"
+        date = date[:10].split('-')
+        return ".".join(reversed(date))
 
 
 print(get_date(user_date))

@@ -1,11 +1,11 @@
 from src.widget import mask_account_card, get_date
 import pytest
 
-def test_mask_number_card(name_and_number_card):
-    assert mask_account_card('Visa Platinum 7000792289606361') == name_and_number_card
+def test_mask_number_card(type_and_number_card):
+    assert mask_account_card('Visa Platinum 7000792289606361') == type_and_number_card
 
-def test_mask_account_number(name_and_number_account):
-    assert mask_account_card('Счет 73654108430135874305') == name_and_number_account
+def test_mask_account_number(type_and_number_account):
+    assert mask_account_card('Счет 73654108430135874305') == type_and_number_account
 
 @pytest.mark.parametrize('unmasked_card_or_account, masked_card_or_account', [
     ('Maestro 1596837868705199', 'Maestro 1596 83** **** 5199'),
@@ -37,3 +37,16 @@ def test_invalid_card_number_or_account_number(unmasked_card_or_account, invalid
 
 def test_get_date(date):
     assert get_date('2024-03-11T02:26:18.671407') == date
+
+@pytest.mark.parametrize('encrypted_date, decrypted_date', [
+    ('2019-07-03T18:35:29.512364', '03.07.2019'),
+    ('2018-06-30T02:08:58.425572', '30.06.2018'),
+    ('2018-09-12T21:27:25.241689', '12.09.2018'),
+    ('2018-10-14T08:21:33.419441', '14.10.2018'),
+])
+def test_get_date(encrypted_date, decrypted_date):
+    assert get_date(encrypted_date) == decrypted_date
+
+def test_get_no_date(no_date):
+    assert get_date(None) == no_date
+    assert get_date('') == no_date

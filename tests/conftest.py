@@ -37,11 +37,11 @@ def no_account_number():
 
 
 @pytest.fixture
-def name_and_number_card():
+def type_and_number_card():
     return 'Visa Platinum 7000 79** **** 6361'
 
 @pytest.fixture
-def name_and_number_account():
+def type_and_number_account():
     return 'Счет **4305'
 
 
@@ -49,3 +49,7 @@ def name_and_number_account():
 @pytest.fixture
 def date():
     return '11.03.2024'
+
+@pytest.fixture
+def no_date():
+    return 'Вы не ввели дату'

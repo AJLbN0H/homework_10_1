@@ -53,3 +53,12 @@ def date():
 @pytest.fixture
 def no_date():
     return 'Вы не ввели дату'
+
+
+@pytest.fixture
+def transaction():
+    return ([{"id": 41428829, "state": "EXECUTED", "date": "2019-07-03T18:35:29.512364"}])
+
+@pytest.fixture
+def no_transaction():
+    return 'Вы не ввели данные по транзакциям'

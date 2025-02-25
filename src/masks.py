@@ -1,6 +1,7 @@
-user_card_number = None
-#user_card_number = str(input())
 from typing import Union
+
+user_card_number = None
+# user_card_number = str(input())
 
 
 def get_mask_card_number(card_number: Union[int, str]) -> str:
@@ -17,16 +18,17 @@ def get_mask_card_number(card_number: Union[int, str]) -> str:
         else:
             return f"{cleaned_card_number[0:4]} {cleaned_card_number[4:6]}** **** {cleaned_card_number[-4::]}"
 
+
 print(get_mask_card_number(user_card_number))
 
 user_account_number = None
-#user_account_number = str(input())
+# user_account_number = str(input())
 
 
 def get_mask_account(account_number: Union[int, str]) -> str:
     """Функция маскировки номера банковского счета"""
-    if account_number is None or account_number == '':
-        return 'Вы не ввели номер счета'
+    if account_number is None or account_number == "":
+        return "Вы не ввели номер счета"
     else:
         cleaned_account_number = ""
         for num in account_number:
@@ -36,5 +38,6 @@ def get_mask_account(account_number: Union[int, str]) -> str:
             return "Номер счета должен содержать 20 цифр"
         else:
             return f"**{account_number[-4::]}"
+
 
 print(get_mask_account(user_account_number))

@@ -81,7 +81,7 @@ user_transaction = (
 )
 
 def filter_by_currency(transaction: Iterable[dict], currency: Union[str]) -> iter:
-    """Функция возвращвет итератор, который поочередно выдает транзакции, где валюта операции соответствует заданной"""
+    """Функция-генератор возвращающая итератор, который поочередно выдает транзакции, где валюта операции соответствует заданной"""
     for i in transaction:
         if i['operationAmount']['currency']['code'] == currency:
             yield i
@@ -89,3 +89,13 @@ def filter_by_currency(transaction: Iterable[dict], currency: Union[str]) -> ite
 usd_transaction = filter_by_currency(user_transaction, "USD")
 for _ in range(3):
     print(next(usd_transaction))
+
+
+def transaction_descriptions(transaction: Iterable[dict]) -> iter:
+    """Функция-генератор возвращающая описание каждой операции по очереди"""
+    for i in transaction:
+        yield i["description"]
+
+descriptions = transaction_descriptions(user_transaction)
+for _ in range(5):
+    print(next(descriptions))

@@ -1,4 +1,4 @@
-from src.generators import filter_by_currency, transaction_descriptions
+from src.generators import filter_by_currency, transaction_descriptions, card_number_generator
 
 
 def test_filter_by_currency_usd(all_transactions):
@@ -94,3 +94,35 @@ def test_transaction_descriptions_no_transactions(no_transactions):
         next(transactions_info, "Транзакций больше нет или нет информации о транзакции")
         == "Транзакций больше нет или нет информации о транзакции"
     )
+
+def test_card_number_generator_1_5():
+    card_number = card_number_generator(1, 5)
+    assert next(card_number) == '0000 0000 0000 0001'
+    assert next(card_number) == '0000 0000 0000 0002'
+    assert next(card_number) == '0000 0000 0000 0003'
+    assert next(card_number) == '0000 0000 0000 0004'
+    assert next(card_number) == '0000 0000 0000 0005'
+
+def test_card_number_generator_50_55():
+    card_number = card_number_generator(5010, 5014)
+    assert next(card_number) == '0000 0000 0000 5010'
+    assert next(card_number) == '0000 0000 0000 5011'
+    assert next(card_number) == '0000 0000 0000 5012'
+    assert next(card_number) == '0000 0000 0000 5013'
+    assert next(card_number) == '0000 0000 0000 5014'
+
+def test_card_number_generator_5010_5014():
+    card_number = card_number_generator(96665, 96670)
+    assert next(card_number) == '0000 0000 0009 6665'
+    assert next(card_number) == '0000 0000 0009 6666'
+    assert next(card_number) == '0000 0000 0009 6667'
+    assert next(card_number) == '0000 0000 0009 6668'
+    assert next(card_number) == '0000 0000 0009 6669'
+
+def test_card_number_generator_9123823473456456_9123823473456460():
+    card_number = card_number_generator(9123823473456456, 9123823473456460)
+    assert next(card_number) == '9123 8234 7345 6456'
+    assert next(card_number) == '9123 8234 7345 6457'
+    assert next(card_number) == '9123 8234 7345 6458'
+    assert next(card_number) == '9123 8234 7345 6459'
+    assert next(card_number) == '9123 8234 7345 6460'

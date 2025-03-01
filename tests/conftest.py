@@ -150,3 +150,4 @@ def all_transactions():
 @pytest.fixture
 def no_transactions():
     return []
+

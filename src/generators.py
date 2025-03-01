@@ -22,4 +22,3 @@ def card_number_generator(start: Union[int], stop: Union[int]) -> str:
         part_3 = (num // 10000) % 10000
         part_4 = num % 10000
         yield f"{part_1:04} {part_2:04} {part_3:04} {part_4:04}"
-

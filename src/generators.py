@@ -1,6 +1,6 @@
 from typing import Iterable, Union
 
-user_transaction = (
+input_user_transaction = (
     [
         {
             "id": 939719570,
@@ -80,22 +80,35 @@ user_transaction = (
     ]
 )
 
-def filter_by_currency(transaction: Iterable[dict], currency: Union[str]) -> iter:
+def filter_by_currency(user_transaction: Iterable[dict], currency: Union[str]) -> iter:
     """Функция-генератор возвращающая итератор, который поочередно выдает транзакции, где валюта операции соответствует заданной"""
-    for i in transaction:
-        if i['operationAmount']['currency']['code'] == currency:
-            yield i
+    for transaction in user_transaction:
+        if transaction['operationAmount']['currency']['code'] == currency:
+            yield transaction
 
-usd_transaction = filter_by_currency(user_transaction, "USD")
+usd_transaction = filter_by_currency(input_user_transaction, "USD")
 for _ in range(3):
     print(next(usd_transaction))
 
 
-def transaction_descriptions(transaction: Iterable[dict]) -> iter:
+def transaction_descriptions(user_transaction: Iterable[dict]) -> iter:
     """Функция-генератор возвращающая описание каждой операции по очереди"""
-    for i in transaction:
-        yield i["description"]
+    for transaction in user_transaction:
+        yield transaction["description"]
 
-descriptions = transaction_descriptions(user_transaction)
+descriptions = transaction_descriptions(input_user_transaction)
 for _ in range(5):
     print(next(descriptions))
+
+
+def card_number_generator(start: Union[int], stop: Union[int]) -> str:
+    """Функция-генератор генерирующая номер карты в заданном диапазоне от 0000 0000 0000 0001 до 9999 9999 9999 9999"""
+    for num in range(start, stop + 1):
+        part_1 = (num // 1000000000000) % 10000
+        part_2 = (num // 10000000) % 10000
+        part_3 = (num // 10000) % 10000
+        part_4 = num % 10000
+        yield f"{part_1:04} {part_2:04} {part_3:04} {part_4:04}"
+
+for card_number in card_number_generator(1, 5):
+    print(card_number)

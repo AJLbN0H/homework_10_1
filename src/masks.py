@@ -4,7 +4,7 @@ user_card_number = None
 # user_card_number = str(input())
 
 
-def get_mask_card_number(card_number: Union[int, str]) -> str:
+def get_mask_card_number(card_number: Union[None, str]) -> str:
     """Функция маскировки номера банковской карты"""
     if card_number is None or card_number == "":
         return "Вы не ввели номер карты"
@@ -21,11 +21,8 @@ def get_mask_card_number(card_number: Union[int, str]) -> str:
 
 print(get_mask_card_number(user_card_number))
 
-user_account_number = None
-# user_account_number = str(input())
 
-
-def get_mask_account(account_number: Union[int, str]) -> str:
+def get_mask_account(account_number: Union[None, str]) -> str:
     """Функция маскировки номера банковского счета"""
     if account_number is None or account_number == "":
         return "Вы не ввели номер счета"
@@ -40,4 +37,11 @@ def get_mask_account(account_number: Union[int, str]) -> str:
             return f"**{account_number[-4::]}"
 
 
-print(get_mask_account(user_account_number))
+if __name__ == "__masks__":
+    user_card_number = None
+    # user_card_number = str(input())
+    print(get_mask_card_number(user_card_number))
+
+    user_account_number = None
+    # user_account_number = str(input())
+    print(get_mask_account(user_account_number))

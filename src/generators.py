@@ -2,7 +2,8 @@ from typing import Iterable, Union
 
 
 def filter_by_currency(user_transaction: Iterable[dict], currency: Union[str]) -> iter:
-    """Функция-генератор возвращающая итератор, который поочередно выдает транзакции, где валюта операции соответствует заданной"""
+    """Функция-генератор возвращающая итератор, который поочередно выдает транзакции,
+    где валюта операции соответствует заданной"""
     for transaction in user_transaction:
         if transaction["operationAmount"]["currency"]["code"] == currency:
             yield transaction

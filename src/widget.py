@@ -6,7 +6,7 @@ user_card_number_or_account_number = None
 # user_card_number_or_account_number = str(input())
 
 
-def mask_account_card(card_number_or_account_number: Union[str]) -> str:
+def mask_account_card(card_number_or_account_number: Union[None, str]) -> str:
     """Замаскировывает номер банковской карты или счета"""
     if card_number_or_account_number is None or card_number_or_account_number == "":
         return "Введите тип и номер карты или номер счета"
@@ -38,7 +38,7 @@ user_date = None
 # user_date = str(input())
 
 
-def get_date(date: Union[str]) -> str:
+def get_date(date: Union[None, str]) -> str:
     """Возврощает строку с датой"""
     if date is None or date == "":
         return "Вы не ввели дату"

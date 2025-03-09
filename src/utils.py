@@ -47,9 +47,7 @@ def transaction_amount(transactions_: Iterable[list]) -> float:
     if transaction["operationAmount"]["currency"]["code"] == "RUB":
         sum_amount = float(transaction["operationAmount"]["amount"])
     else:
-        convert_amount = convert_usd_and_eur_in_rub(
-            transaction["operationAmount"]["amount"], transaction["operationAmount"]["currency"]["code"]
-        )
+        convert_amount = convert_usd_and_eur_in_rub(transaction)
         sum_amount = convert_amount["result"]
 
     return sum_amount

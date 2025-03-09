@@ -96,8 +96,7 @@ def test_logging_to_file_get_mask_card_number():
             log_content = f.read()
         assert (
             "В функции 'get_mask_card_number' возникла ошибка 'Номер карты должен содержать 16 цифр', "
-            "входные данные: '700079228960636'"
-            in log_content
+            "входные данные: '700079228960636'" in log_content
         )
     finally:
         os.remove(temp_filename)
@@ -113,8 +112,7 @@ def test_logging_to_file_get_mask_card_number():
             log_content = f.read()
         assert (
             "В функции 'get_mask_card_number' возникла ошибка 'Номер карты должен содержать 16 цифр', "
-            "входные данные: '7000___-234**79228960636'"
-            in log_content
+            "входные данные: '7000___-234**79228960636'" in log_content
         )
     finally:
         os.remove(temp_filename)

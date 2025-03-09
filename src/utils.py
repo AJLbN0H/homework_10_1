@@ -1,17 +1,22 @@
-from typing import Union
+from typing import Union, Iterable
 from src.external_api import convert_usd_and_eur_in_rub
 import json
 
-#user_path_to_json = '..\\data\\t.json'
-#user_path_to_json = '..\\data\\test_2.json'
-#user_path_to_json = '..\\data\\test.json'
 
-user_path_to_json = '..\\data\\operations.json'
+#user_path_to_json = '..\\data\\operations_not_found.json'
+#user_path_to_json = '..\\data\\operations_empty_list.json'
+#user_path_to_json = '..\\data\\operations_not_a_list.json'
+#user_path_to_json = '..\\data\\operations_usd.json'
+#user_path_to_json = '..\\data\\operations_eur.json'
+
+#user_path_to_json = '..\\data\\operations.json'
+user_path_to_json = ''
 #user_path_to_json = str(input())
 
 
 def json_file(path_to_json: Union[str]) -> list:
     """Принимает на вход путь до JSON-файла и возвращает список словарей с данными о финансовых транзакциях"""
+
     transaction_list = []
 
     try:
@@ -19,30 +24,39 @@ def json_file(path_to_json: Union[str]) -> list:
             transaction_list = json.load(f)
             if type(transaction_list) is not list:
                 return []
+
     except FileNotFoundError:
-        return []
+        return transaction_list
     except ValueError:
-        return []
+        return transaction_list
+
     return transaction_list
 
 transactions = json_file(user_path_to_json)
-print(transactions)
+#print(transactions)
 
 
-def transaction_amount(transaction) -> float:
+def transaction_amount(transactions_: Iterable[list]) -> float:
     """Функция которая принимает на вход транзакцию и возвращает сумму транзакции (amount) в рублях, тип данных — float.
      Если транзакция была в USD или EUR, происходит обращение к внешнему API для получения текущего курса валют и
      конвертации суммы операции в рубли"""
+
+    try:
+        transaction = transactions_[0]
+    except IndexError:
+        return 'Список транзакций пуст'
+    except KeyError:
+        return 'Список транзакций пуст'
+
     sum_amount = 0.0
 
     if transaction['operationAmount']['currency']['code'] == 'RUB':
-        sum_amount = transaction['operationAmount']['amount']
+        sum_amount = float(transaction['operationAmount']['amount'])
     else:
-        sum_amount = convert_usd_and_eur_in_rub(transaction['operationAmount']['amount'], transaction['operationAmount']['currency']['code'])
-
+        convert_amount = convert_usd_and_eur_in_rub(transaction['operationAmount']['amount'], transaction['operationAmount']['currency']['code'])
+        sum_amount = convert_amount['result']
 
     return sum_amount
 
-
-
-print(transaction_amount(transactions[0]))
+transaction_amount(transactions)
+#print(transaction_amount(transactions))

@@ -7,8 +7,9 @@ def test_convert_amount() -> None:
     """testing convert currency with external API."""
 
     mock_response = Mock()
-    mock_response.json.return_value = {"result": 8905.0893}
+    mock_response.json.return_value = {"result": 732120.340183}
 
     with patch("requests.get", return_value=mock_response):
-        result = convert_usd_and_eur_in_rub(100, "USD")
-        assert result["result"] == 8905.0893
+        list_transaction = {"id": 41428829, "state": "EXECUTED", "date": "2019-07-03T18:35:29.512364","operationAmount": {"amount": "8221.37", "currency": {"name": "USD", "code": "USD"}}, "description": "Перевод организации", "from": "MasterCard 7158300734726758", "to": "Счет 35383033474447895560"}
+        result = convert_usd_and_eur_in_rub(list_transaction)
+        assert result["result"] == 732120.340183

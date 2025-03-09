@@ -1,7 +1,6 @@
 from typing import Union
+from src.external_api import convert_usd_and_eur_in_rub
 import json
-
-API_KEY = '0YCpu6Z1zUZ4EcGkYsr508iGmNnm4qaz'
 
 #user_path_to_json = '..\\data\\t.json'
 #user_path_to_json = '..\\data\\test_2.json'
@@ -38,6 +37,9 @@ def transaction_amount(transaction) -> float:
 
     if transaction['operationAmount']['currency']['code'] == 'RUB':
         sum_amount = transaction['operationAmount']['amount']
+    else:
+        sum_amount = convert_usd_and_eur_in_rub(transaction['operationAmount']['amount'], transaction['operationAmount']['currency']['code'])
+
 
     return sum_amount
 

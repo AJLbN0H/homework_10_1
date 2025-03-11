@@ -1,5 +1,5 @@
-from typing import Union
 import logging
+from typing import Union
 
 logger = logging.getLogger()
 file_handler = logging.FileHandler("..\\logs\\masks.log", "w", encoding="utf-8")
@@ -14,6 +14,7 @@ def get_mask_card_number(card_number: Union[None, str]) -> str:
 
     if card_number is None or card_number == "":
         logger.error("Вы не ввели номер карты")
+        return "Вы не ввели номер карты"
     else:
         cleaned_card_number = ""
 
@@ -23,10 +24,12 @@ def get_mask_card_number(card_number: Union[None, str]) -> str:
 
         if len(cleaned_card_number) != 16:
             logger.error("Номер карты должен содержать 16 цифр")
+            return "Номер карты должен содержать 16 цифр"
         else:
             logger.info(
                 f"Замаскированный номер вашей карты выглядит вот так: {cleaned_card_number[0:4]} {cleaned_card_number[4:6]}** **** {cleaned_card_number[-4::]}"
             )
+            return f"Замаскированный номер вашей карты выглядит вот так: {cleaned_card_number[0:4]} {cleaned_card_number[4:6]}** **** {cleaned_card_number[-4::]}"
 
 
 def get_mask_account(account_number: Union[None, str]) -> str:
@@ -34,6 +37,7 @@ def get_mask_account(account_number: Union[None, str]) -> str:
 
     if account_number is None or account_number == "":
         logger.error("Вы не ввели номер счета")
+        return "Вы не ввели номер счета"
     else:
         cleaned_account_number = ""
 
@@ -43,9 +47,10 @@ def get_mask_account(account_number: Union[None, str]) -> str:
 
         if len(cleaned_account_number) != 20:
             logger.error("Номер счета должен содержать 20 цифр")
+            return "Номер счета должен содержать 20 цифр"
         else:
-            logger.info(f"Замасикрованный номер вашего счета выглядит вот так: **{account_number[-4::]}")
-
+            logger.info(f"Замаскированный номер вашего счета выглядит вот так: **{account_number[-4::]}")
+            return f"Замаскированный номер вашего счета выглядит вот так: **{account_number[-4::]}"
 
 user_card_number = None
 # user_card_number = str(input())

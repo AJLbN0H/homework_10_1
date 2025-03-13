@@ -12,7 +12,7 @@ logger.addHandler(file_handler)
 logger.setLevel(logging.DEBUG)
 
 
-user_path_to_json = "..\\data\\operations.json"
+user_path_to_json = ""
 # user_path_to_json = str(input())
 
 

@@ -27,9 +27,10 @@ def get_mask_card_number(card_number: Union[None, str]) -> str:
             return "Номер карты должен содержать 16 цифр"
         else:
             logger.info(
-                f"Замаскированный номер вашей карты выглядит вот так: {cleaned_card_number[0:4]} {cleaned_card_number[4:6]}** **** {cleaned_card_number[-4::]}"
+                f"Замаскированный номер вашей карты выглядит вот так: "
+                f"{cleaned_card_number[0:4]} {cleaned_card_number[4:6]}** **** {cleaned_card_number[-4::]}"
             )
-            return f"Замаскированный номер вашей карты выглядит вот так: {cleaned_card_number[0:4]} {cleaned_card_number[4:6]}** **** {cleaned_card_number[-4::]}"
+            return f"{cleaned_card_number[0:4]} {cleaned_card_number[4:6]}** **** {cleaned_card_number[-4::]}"
 
 
 def get_mask_account(account_number: Union[None, str]) -> str:
@@ -50,14 +51,4 @@ def get_mask_account(account_number: Union[None, str]) -> str:
             return "Номер счета должен содержать 20 цифр"
         else:
             logger.info(f"Замаскированный номер вашего счета выглядит вот так: **{account_number[-4::]}")
-            return f"Замаскированный номер вашего счета выглядит вот так: **{account_number[-4::]}"
-
-user_card_number = None
-# user_card_number = str(input())
-
-get_mask_card_number(user_card_number)
-
-user_account_number = None
-# user_account_number = str(input())
-
-get_mask_account(user_account_number)
+            return f"**{account_number[-4::]}"

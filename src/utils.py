@@ -25,17 +25,17 @@ def json_file(path_to_json: Union[str]) -> list:
         with open(path_to_json, "r", encoding="utf-8") as f:
             transaction_list = json.load(f)
             if type(transaction_list) is not list:
-                logger.error('В JSON-файле находиться неверный тип данных')
+                logger.error("В JSON-файле находиться неверный тип данных")
                 return []
 
     except FileNotFoundError:
-        logger.error('JSON-файла с таким именем не существует')
+        logger.error("JSON-файла с таким именем не существует")
         return transaction_list
     except ValueError:
-        logger.error('В JSON-файле находиться неверный тип данных')
+        logger.error("В JSON-файле находиться неверный тип данных")
         return transaction_list
 
-    logger.info(f'Список транзакций готов: {transaction_list}')
+    logger.info(f"Список транзакций готов: {transaction_list}")
     return transaction_list
 
 
@@ -65,8 +65,8 @@ def transaction_amount(transactions_: Iterable[list]) -> float:
         convert_amount = convert_usd_and_eur_in_rub(transaction)
         sum_amount = convert_amount["result"]
 
-    logger.info(f'Сумма транзакции в рублях: {sum_amount}')
-    return f'Сумма транзакции в рублях: {sum_amount}'
+    logger.info(f"Сумма транзакции в рублях: {sum_amount}")
+    return f"Сумма транзакции в рублях: {sum_amount}"
 
 
 transaction_amount(transactions)

@@ -14,8 +14,7 @@ def test_logging_to_console_get_mask_card_number(capsys):
     logged_get_mask_card_number(user_input)
     captured = capsys.readouterr()
     assert (
-        "Функция 'get_mask_card_number' выполнена за 0.0001 секунд. " "Результат: Замаскированный номер вашей карты "
-        "выглядит вот так: 7000 79** **** 6361" in captured.out
+        "Функция 'get_mask_card_number' выполнена за 0.0003 секунд. " "Результат: 7000 79** **** 6361" in captured.out
     )
 
     @log()
@@ -81,8 +80,7 @@ def test_logging_to_file_get_mask_card_number():
         with open(temp_filename, "r", encoding="utf-8") as f:
             log_content = f.read()
         assert (
-            "Функция 'get_mask_card_number' выполнена за 0.0002 секунд. Результат: Замаскированный номер вашей карты"
-            " выглядит вот так: 7000 79** **** 6361" in log_content
+            "Функция 'get_mask_card_number' выполнена за 0.0003 секунд. Результат: 7000 79** **** 6361" in log_content
         )
     finally:
         os.remove(temp_filename)

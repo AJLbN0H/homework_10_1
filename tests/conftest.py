@@ -3,12 +3,12 @@ import pytest
 
 @pytest.fixture
 def one_card_number():
-    return "Замаскированный номер вашей карты выглядит вот так: 7000 79** **** 6361"
+    return "7000 79** **** 6361"
 
 
 @pytest.fixture
 def two_mix_card_number():
-    return "Замаскированный номер вашей карты выглядит вот так: 7123 78** **** 9961"
+    return "7123 78** **** 9961"
 
 
 @pytest.fixture
@@ -23,7 +23,7 @@ def no_card_number():
 
 @pytest.fixture
 def account_number():
-    return "Замаскированный номер вашего счета выглядит вот так: **4305"
+    return "**4305"
 
 
 @pytest.fixture

@@ -19,13 +19,39 @@ def csv_file(patch_to_csv: Union[str]) -> list:
 
     try:
         with open(patch_to_csv, "r", encoding="utf-8") as file:
-            transactions_list = csv.DictReader(file)
+            transactions_list = csv.DictReader(file, delimiter=";")
             for transaction in transactions_list:
-                csv_transactions_list.append(transaction)
                 if type(csv_transactions_list) is not list:
                     logger.error("В csv-файле находиться неверный тип данных")
                     return []
 
+                id = int(transaction["id"])
+                state = transaction["state"]
+                date = transaction["date"]
+                amount = str(transaction["amount"])
+                currency_name = transaction["currency_name"]
+                currency_code = transaction["currency_code"]
+                from_val = transaction["from"]
+                to_val = transaction["to"]
+                description = transaction["description"]
+
+                transactions = {
+                    "id": id,
+                    "state": state,
+                    "date": date,
+                    "operationAmount": {
+                        "amount": amount,
+                        "currency": {
+                            "name": currency_name,
+                            "code": currency_code,
+                        },
+                    },
+                    "description": description,
+                    "from": from_val,
+                    "to": to_val,
+                }
+
+                csv_transactions_list.append(transactions)
     except FileNotFoundError:
         logger.error("csv-файла с таким именем не существует")
         return csv_transactions_list

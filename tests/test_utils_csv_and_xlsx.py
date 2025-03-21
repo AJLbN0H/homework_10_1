@@ -22,15 +22,13 @@ def test_csv_file(mock_csv: Mock) -> None:
     ]
     data = [
         {
-            "id": "650703",
+            "id": 650703,
             "state": "EXECUTED",
             "date": "2023-09-05T11:30:32Z",
-            "amount": "16210",
-            "currency_name": "Sol",
-            "currency_code": "PEN",
+            "operationAmount": {"amount": "16210", "currency": {"name": "Sol", "code": "PEN"}},
+            "description": "Перевод организации",
             "from": "Счет 58803664561298323391",
             "to": "Счет 39745660563456619397",
-            "description": "Перевод организации",
         }
     ]
     mock_csv.return_value = csv_data

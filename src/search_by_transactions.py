@@ -1,8 +1,6 @@
-from typing import Iterable, Union
 import re
 from collections import Counter
-from src.utils import json_file
-from src.utils_csv_and_xlsx import csv_file, xlsx_file
+from typing import Iterable, Union
 
 
 def search_by_list_description(transactions: Iterable[list], search_string: Union[str]) -> list:
@@ -22,21 +20,21 @@ def counting_transaction_categories(transactions: Iterable[list], categories: li
     counter_description = Counter(list())
 
     for category in categories:
-        string_categories = "".join(category)
+        str_categories = "".join(category)
 
-        transact = (search_by_list_description(transactions, string_categories))
+        transaction = search_by_list_description(transactions, str_categories)
 
-        for cat in range(len(transact)):
+        for i in range(len(transaction)):
             counter_description.update([category])
 
     return dict(counter_description)
 
 
-if __name__ == "__main__":
-    user_transaction_list = json_file("..\\data\\operations.json")
+# if __name__ == "__main__":
+# user_transaction_list = json_file("..\\data\\operations.json")
 
-    user_search_string = "Открытие вклада"
-    print(search_by_list_description(user_transaction_list, user_search_string))
+# user_search_string = "Открытие вклада"
+# print(search_by_list_description(user_transaction_list, user_search_string))
 
-    user_search_categories = ["Открытие вклада", "Перевод организации", "Перевод со счета на счет"]
-    print(counting_transaction_categories(user_transaction_list, user_search_categories))
+# user_search_categories = ["Открытие вклада", "Перевод со счета на счет", "Перевод организации"]
+# print(counting_transaction_categories(user_transaction_list, user_search_categories))

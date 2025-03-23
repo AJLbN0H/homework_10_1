@@ -1,7 +1,5 @@
 from typing import Iterable
 
-user_transaction_list = None
-
 
 def filter_by_state(user_dict: Iterable[dict], state: str = "EXECUTED") -> Iterable[dict]:
     """Функция возвращает новый список словарей, содержащий только те словари,
@@ -21,9 +19,6 @@ def filter_by_state(user_dict: Iterable[dict], state: str = "EXECUTED") -> Itera
         return "Транзакции отсутствуют"
 
 
-# print(filter_by_state(user_transaction_list))
-
-
 def sort_by_date(user_dict: Iterable[dict], reverse: bool = True) -> Iterable[dict]:
     """Функция возвращает список отсортированный по дате"""
     if user_dict is None or user_dict == "":
@@ -38,6 +33,3 @@ def sort_by_date(user_dict: Iterable[dict], reverse: bool = True) -> Iterable[di
                 unique_transaction.append(transaction)
 
         return sorted(unique_transaction, key=lambda x: x["date"], reverse=reverse)
-
-
-print(sort_by_date(user_transaction_list))

@@ -1,19 +1,20 @@
 import json
 import logging
+import os
 from typing import Iterable, Union
 
 from src.external_api import convert_usd_and_eur_in_rub
 
+current_dir = os.path.dirname(os.path.abspath(__file__))
+rel_file_path = os.path.join(current_dir, "..\\logs\\utils.log")
+abs_file_path = os.path.abspath(rel_file_path)
+
 logger = logging.getLogger()
-file_handler = logging.FileHandler("..\\logs\\utils.log", "w", encoding="utf-8")
+file_handler = logging.FileHandler(abs_file_path, "w", encoding="utf-8")
 file_formater = logging.Formatter("%(asctime)s - %(filename)s - %(levelname)s - %(message)s")
 file_handler.setFormatter(file_formater)
 logger.addHandler(file_handler)
 logger.setLevel(logging.DEBUG)
-
-
-user_path_to_json = ""
-# user_path_to_json = str(input())
 
 
 def json_file(path_to_json: Union[str]) -> list:
@@ -37,10 +38,6 @@ def json_file(path_to_json: Union[str]) -> list:
 
     logger.info(f"Список транзакций готов: {transaction_list}")
     return transaction_list
-
-
-transactions = json_file(user_path_to_json)
-# print(transactions)
 
 
 def transaction_amount(transactions_: Iterable[list]) -> float:
@@ -67,7 +64,3 @@ def transaction_amount(transactions_: Iterable[list]) -> float:
 
     logger.info(f"Сумма транзакции в рублях: {sum_amount}")
     return f"Сумма транзакции в рублях: {sum_amount}"
-
-
-transaction_amount(transactions)
-# print(transaction_amount(transactions))

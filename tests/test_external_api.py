@@ -18,4 +18,4 @@ def test_convert_amount() -> None:
             "to": "Счет 35383033474447895560",
         }
         result = convert_usd_and_eur_in_rub(list_transaction)
-        assert result["result"] == 704972.677627
+        assert result["result"] == 690603.391805

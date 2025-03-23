@@ -1,11 +1,16 @@
 import csv
 import logging
+import os
 from typing import Union
 
 import pandas as pd
 
+current_dir = os.path.dirname(os.path.abspath(__file__))
+rel_file_path = os.path.join(current_dir, "..\\logs\\utils_csv_and_xlsx.log")
+abs_file_path = os.path.abspath(rel_file_path)
+
 logger = logging.getLogger()
-file_handler = logging.FileHandler("..\\logs\\utils_csv_and_xlsx.log", "w", encoding="utf-8")
+file_handler = logging.FileHandler(abs_file_path, "w", encoding="utf-8")
 file_formater = logging.Formatter("%(asctime)s - %(filename)s - %(levelname)s - %(message)s")
 file_handler.setFormatter(file_formater)
 logger.addHandler(file_handler)

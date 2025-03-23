@@ -28,13 +28,3 @@ def counting_transaction_categories(transactions: Iterable[list], categories: li
             counter_description.update([category])
 
     return dict(counter_description)
-
-
-# if __name__ == "__main__":
-# user_transaction_list = json_file("..\\data\\operations.json")
-
-# user_search_string = "Открытие вклада"
-# print(search_by_list_description(user_transaction_list, user_search_string))
-
-# user_search_categories = ["Открытие вклада", "Перевод со счета на счет", "Перевод организации"]
-# print(counting_transaction_categories(user_transaction_list, user_search_categories))

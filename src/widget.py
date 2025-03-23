@@ -2,9 +2,6 @@ from typing import Union
 
 from src.masks import get_mask_account, get_mask_card_number
 
-user_card_number_or_account_number = None
-# user_card_number_or_account_number = str(input())
-
 
 def mask_account_card(card_number_or_account_number: Union[None, str]) -> str:
     """Замаскировывает номер банковской карты или счета"""
@@ -31,13 +28,6 @@ def mask_account_card(card_number_or_account_number: Union[None, str]) -> str:
                 return " ".join(split_card_number_or_account_number)
 
 
-print(mask_account_card(user_card_number_or_account_number))
-
-
-user_date = None
-# user_date = str(input())
-
-
 def get_date(date: Union[None, str]) -> str:
     """Возврощает строку с датой"""
     if date is None or date == "":
@@ -45,6 +35,3 @@ def get_date(date: Union[None, str]) -> str:
     else:
         date = date[:10].split("-")
         return ".".join(reversed(date))
-
-
-print(get_date(user_date))
